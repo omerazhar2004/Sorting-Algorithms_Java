@@ -1,0 +1,6 @@
+{
+	"nodes":[
+		{"id":"418872cd6dbd7232","x":-600,"y":-860,"width":1200,"height":877,"type":"text","text":"sources:\nhttps://www.baeldung.com/java-quicksort\nQuicksort implementation pseudocode:\npublic void sortArrs():\n\t\tfor(i = 0; i < weeklyLimArrs.size(); i++){\n\t\t\t\t\n\t\t}\n\t\t"}
+	],
+	"edges":[]
+}
