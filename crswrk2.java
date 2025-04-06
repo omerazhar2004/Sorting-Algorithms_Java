@@ -9,14 +9,14 @@ public class crswrk2 {
     public ArrayList<ArrayList<Integer>> weeklyLimArrsRevSorted = new ArrayList<>();   //reverse sorted
     public static void main (String args[]){
         crswrk2 mod = new crswrk2();
-        srtDiffArrs newVer = new srtDiffArrs();
+        // srtDiffArrs newVer = new srtDiffArrs();
         mod.arrGen();
         mod.test_arrGenSorted();
         mod.test_arrGenRand();
         mod.test_arrGenRevSrt();
-        newVer.srtArrSrtTst();
-        newVer.srtArrRandTst();
-        newVer.srtArrRevSrtTst();
+        mod.srtArrSrtTst();
+        mod.srtArrRandTst();
+        mod.srtArrRevSrtTst();
         mod.test_arrGenSorted();
         mod.test_arrGenRand();
         mod.test_arrGenRevSrt();
@@ -163,6 +163,7 @@ public class crswrk2 {
     }
     public void srtArrSrtTst(){
         long startTime = System.currentTimeMillis();
+        System.out.println("Sorted");
         for(int i = 0; i < weeklyLimArrsSrt.size(); i++){
             ArrayList<Integer> dayList = weeklyLimArrsSrt.get(i);
             quickSort(dayList, 0, dayList.size() - 1);
@@ -172,6 +173,7 @@ public class crswrk2 {
     }
     public void srtArrRandTst(){
         long startTime = System.currentTimeMillis();
+        System.out.println("Random");
         System.out.println("Start Time: " + startTime);
         for(int i = 0; i < weeklyLimArrsRand.size(); i++){
             ArrayList<Integer> dayListRand = weeklyLimArrsRand.get(i);
@@ -182,37 +184,7 @@ public class crswrk2 {
     }
     public void srtArrRevSrtTst(){
         long startTime = System.currentTimeMillis();
-        System.out.println("Start Time: " +  startTime);
-        for(int i = 0; i < weeklyLimArrsRevSorted.size(); i++){
-            ArrayList<Integer> dayListRevSrt = weeklyLimArrsRevSorted.get(i);
-            quickSort(dayListRevSrt, 0, dayListRevSrt.size() - 1);
-        }
-        long endTime = System.currentTimeMillis();
-        System.out.println("System took " + (endTime - startTime) + " ms to run.");
-    }
-}
-class srtDiffArrs extends crswrk2{
-    public void srtArrSrtTst(){
-        long startTime = System.currentTimeMillis();
-        for(int i = 0; i < weeklyLimArrsSrt.size(); i++){
-            ArrayList<Integer> dayList = weeklyLimArrsSrt.get(i);
-            quickSort(dayList, 0, dayList.size() - 1);
-        }
-        long endTime = System.currentTimeMillis();
-        System.out.println("System took " + (endTime - startTime) + " ms to run.");
-    }
-    public void srtArrRandTst(){
-        long startTime = System.currentTimeMillis();
-        System.out.println("Start Time: " + startTime);
-        for(int i = 0; i < weeklyLimArrsRand.size(); i++){
-            ArrayList<Integer> dayListRand = weeklyLimArrsRand.get(i);
-            quickSort(dayListRand, 0, dayListRand.size() - 1);
-        }
-        long endTime = System.currentTimeMillis();
-        System.out.println("System took " + (endTime - startTime) + " ms to run.");
-    }
-    public void srtArrRevSrtTst(){
-        long startTime = System.currentTimeMillis();
+        System.out.println("Reverse Sorted");
         System.out.println("Start Time: " +  startTime);
         for(int i = 0; i < weeklyLimArrsRevSorted.size(); i++){
             ArrayList<Integer> dayListRevSrt = weeklyLimArrsRevSorted.get(i);
