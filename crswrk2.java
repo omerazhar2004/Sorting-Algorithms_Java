@@ -1,11 +1,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-import java.util.Deque;
-import java.util.LinkedList;
 public class crswrk2 {
     // public int [] dailyLim;
-    public int [] weekLims =  {1, 7, 500, 6, 70000};
+    public int [] weekLims =  {1, 7, 500, 6, 70};
     public ArrayList<ArrayList<Integer>> weeklyLimArrsSrt = new ArrayList<>();  //sorted
     public ArrayList<ArrayList<Integer>> weeklyLimArrsRand = new ArrayList<>();  //unsorted
     public ArrayList<ArrayList<Integer>> weeklyLimArrsRevSorted = new ArrayList<>();   //reverse sorted
@@ -81,85 +79,12 @@ public class crswrk2 {
 
         }
     }
-    //  public static void quickSort(ArrayList<Integer> list, int low, int high) {
-    //     if (low < high) {
-    //         int partitionIndex = partition(list, low, high);
+     public static void quickSort(ArrayList<Integer> list, int low, int high) {
+        if (low < high) {
+            int partitionIndex = partition(list, low, high);
 
-    //         quickSort(list, low, partitionIndex - 1);
-    //         quickSort(list, partitionIndex + 1, high);
-    //     }
-    // }
-
-    // private static int partition(ArrayList<Integer> list, int low, int high) {
-    //     int pivot = list.get(high);
-    //     int i = (low - 1);
-
-    //     for (int j = low; j < high; j++) {
-    //         if (list.get(j) <= pivot) {
-    //             i++;
-    //             Collections.swap(list, i, j);
-    //         }
-    //     }
-    //     Collections.swap(list, i + 1, high);
-    //     return (i + 1);
-    // }
-    // public static void quickSortRev(ArrayList<Integer> list, int low, int high) {
-    //     if (list == null || list.size() < 2) return;
-    //     if (low < high) {
-    //         int partitionIndex = partitionRev(list, low, high);
-
-    //         if (low < partitionIndex - 1) quickSortRev(list, low, partitionIndex - 1);
-    //         if (partitionIndex + 1 < high) quickSortRev(list, partitionIndex + 1, high);
-    //     }
-    // }
-
-    // private static int partitionRev(ArrayList<Integer> list, int low, int high) {
-    //     int pivot = list.get(high);
-    //     int i = (low - 1);
-
-    //     for (int j = low; j < high; j++) {
-    //         if (list.get(j) >= pivot) {
-    //             i++;
-    //             Collections.swap(list, i, j);
-    //         }
-    //     }
-    //     Collections.swap(list, i + 1, high);
-    //     return (i + 1);
-    // }
-    //     public void test_arrGenSortedSrt(){
-    //     System.out.println("Sorted:\n");
-    //     for(int i = 0; i < weeklyLimArrsSrt.size(); i++){
-    //         ArrayList<Integer> dayList = weeklyLimArrsSrt.get(i);
-    //         // quickSort(dayList, 0, dayList.size() - 1);
-    //         System.out.println("Day " + (i + 1) + " (Size: " + dayList.size() + "): ");
-    //         for (int j = 0; j < dayList.size(); j++){
-    //             System.out.println(dayList.get(j)+ "");
-    //         }
-    //         System.out.println("\n");
-    //     }
-    // }
-//     import java.util.ArrayList;
-// import java.util.Collections;
-// import java.util.Deque;
-// import java.util.LinkedList;
-
-    public static void quickSort(ArrayList<Integer> list) {
-        if (list == null || list.size() < 2) return;
-
-        Deque<int[]> stack = new LinkedList<>();
-        stack.push(new int[]{0, list.size() - 1});
-
-        while (!stack.isEmpty()) {
-            int[] range = stack.pop();
-            int low = range[0], high = range[1];
-
-            if (low < high) {
-                int partitionIndex = partition(list, low, high);
-                
-                // Push subarrays onto stack
-                stack.push(new int[]{low, partitionIndex - 1});
-                stack.push(new int[]{partitionIndex + 1, high});
-            }
+            quickSort(list, low, partitionIndex - 1);
+            quickSort(list, partitionIndex + 1, high);
         }
     }
 
@@ -176,24 +101,13 @@ public class crswrk2 {
         Collections.swap(list, i + 1, high);
         return (i + 1);
     }
-
-    public static void quickSortRev(ArrayList<Integer> list) {
+    public static void quickSortRev(ArrayList<Integer> list, int low, int high) {
         if (list == null || list.size() < 2) return;
+        if (low < high) {
+            int partitionIndex = partitionRev(list, low, high);
 
-        Deque<int[]> stack = new LinkedList<>();
-        stack.push(new int[]{0, list.size() - 1});
-
-        while (!stack.isEmpty()) {
-            int[] range = stack.pop();
-            int low = range[0], high = range[1];
-
-            if (low < high) {
-                int partitionIndex = partitionRev(list, low, high);
-                
-                // Push subarrays onto stack
-                stack.push(new int[]{low, partitionIndex - 1});
-                stack.push(new int[]{partitionIndex + 1, high});
-            }
+            if (low < partitionIndex - 1) quickSortRev(list, low, partitionIndex - 1);
+            if (partitionIndex + 1 < high) quickSortRev(list, partitionIndex + 1, high);
         }
     }
 
@@ -210,7 +124,19 @@ public class crswrk2 {
         Collections.swap(list, i + 1, high);
         return (i + 1);
     }
-
+        public void test_arrGenSortedSrt(){
+        System.out.println("Sorted:\n");
+        for(int i = 0; i < weeklyLimArrsSrt.size(); i++){
+            ArrayList<Integer> dayList = weeklyLimArrsSrt.get(i);
+            // quickSort(dayList, 0, dayList.size() - 1);
+            System.out.println("Day " + (i + 1) + " (Size: " + dayList.size() + "): ");
+            for (int j = 0; j < dayList.size(); j++){
+                System.out.println(dayList.get(j)+ "");
+            }
+            System.out.println("\n");
+        }
+    }
+    
     public void test_arrGenRandSrt(){
         System.out.println("Random:\n");
         for(int i = 0; i < weeklyLimArrsRand.size(); i++){
