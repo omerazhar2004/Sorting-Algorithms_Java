@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.Random;
 public class crswrk2 {
     // public int [] dailyLim;
-    public int [] weekLims =  {1, 7, 500, 6, 70};
+    public int [] weekLims =  {1, 7, 500, 6, 700};
     public ArrayList<ArrayList<Integer>> weeklyLimArrsSrt = new ArrayList<>();  //sorted
     public ArrayList<ArrayList<Integer>> weeklyLimArrsRand = new ArrayList<>();  //unsorted
     public ArrayList<ArrayList<Integer>> weeklyLimArrsRevSorted = new ArrayList<>();   //reverse sorted
@@ -80,13 +80,50 @@ public class crswrk2 {
         }
     }
      public static void quickSort(ArrayList<Integer> list, int low, int high) {
-        if (low < high) {
-            int partitionIndex = partition(list, low, high);
+        // if (low < high) {
+        //     int partitionIndex = partition(list, low, high);
 
-            quickSort(list, low, partitionIndex - 1);
-            quickSort(list, partitionIndex + 1, high);
+        //     quickSort(list, low, partitionIndex - 1);
+        //     quickSort(list, partitionIndex + 1, high);
+        // }
+        // int my_list[] = new int[high - low + 1];
+        ArrayList<Integer> stack = new ArrayList<>();
+        stack.add(low);
+        stack.add(high);
+
+        while (!stack.isEmpty()) {
+            high = stack.remove(stack.size() - 1);
+            low = stack.remove(stack.size() - 1);
+
+            int p = partition(list, low, high);
+
+            if (p - 1 > low) {
+                stack.add(low);
+                stack.add(p - 1);
+            }
+            if (p + 1 < high) {
+                stack.add(p + 1);
+                stack.add(high);
+            }
         }
     }
+
+        // int top = -1;
+        // list[top] = low;
+    //     my_list[++top] = high;
+    //     while (top >= 0){
+    //      high = my_list[top--];
+    //      low = my_list[top--];
+    //      int p = partition(list, low, high);
+    //      if (p - 1 > l){
+    //         my_list[++top] = low;
+    //         my_list[++top] = p - 1;
+    //      }  
+    //      if (p + 1 < high){
+    //         my_list[++top] = p + 1;
+    //         my_list[++top] = high;
+    //      }
+    //   }
 
     private static int partition(ArrayList<Integer> list, int low, int high) {
         int pivot = list.get(high);
