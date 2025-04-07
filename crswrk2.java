@@ -4,8 +4,8 @@ import java.util.Random;
 public class crswrk2 {
     // public int [] dailyLim;
     // public int [] weekLims =  {14, 5, 7, 100};
-    // public int [] weekLims =  {1000, 5000, 10000, 50000, 75000, 100000, 500000};
-    public int [] weekLims =  {1000, 5000, 1000, 5000, 7500, 1000, 5000};
+    public int [] weekLims =  {1000, 5000, 10000, 50000, 75000, 100000, 500000};
+    // public int [] weekLims =  {1000, 5000, 1000, 5000, 7500, 1000, 5000};
     public ArrayList<ArrayList<Integer>> weeklyLimArrsSrt = new ArrayList<>();  //sorted
     public ArrayList<ArrayList<Integer>> weeklyLimArrsRand = new ArrayList<>();  //unsorted
     public ArrayList<ArrayList<Integer>> weeklyLimArrsRevSorted = new ArrayList<>();   //reverse sorted
