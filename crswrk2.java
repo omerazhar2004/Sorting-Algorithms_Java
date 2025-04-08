@@ -1,14 +1,17 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Deque;
 import java.util.Random;
 public class crswrk2 {
     // public int [] dailyLim;
-    // public int [] weekLims =  {14, 5, 7, 100};
+    // public int [] weekLims =  {14, 5, 7, 7};
     public int [] weekLims =  {1000, 5000, 10000, 50000, 75000, 100000, 500000};
     // public int [] weekLims =  {1000, 5000, 1000, 5000, 7500, 1000, 5000};
     public ArrayList<ArrayList<Integer>> weeklyLimArrsSrt = new ArrayList<>();  //sorted
     public ArrayList<ArrayList<Integer>> weeklyLimArrsRand = new ArrayList<>();  //unsorted
-    public ArrayList<ArrayList<Integer>> weeklyLimArrsRevSorted = new ArrayList<>();   //reverse sorted
+    public ArrayList<ArrayList<Integer>> weeklyLimArrsRevSorted = new ArrayList<>();
+       //reverse sorted
     public static void main (String args[]){
         crswrk2 mod = new crswrk2();
         // srtDiffArrs newVer = new srtDiffArrs();
@@ -29,13 +32,25 @@ public class crswrk2 {
         for (int i = 0; i < weekLims.length; i++){
             ArrayList<Integer> dayLim = new ArrayList<>();
             ArrayList<Integer> dayLimRand = new ArrayList<>();
-            ArrayList<Integer> dayLimRevSrt = new ArrayList<>();
+                ArrayList<Integer> dayLimRevSrt = new ArrayList<>();
+            // ArrayList<Integer> dayLimRand = new ArrayList<>();
+            // ArrayList<Integer> dayLimRevSrt = new ArrayList<>();
             for (int j = 0; j < weekLims[i]; j++){
-                dayLim.add(random.nextInt(500000 - 1000 + 1) + 1000);
-                dayLimRand.add(random.nextInt(500000 - 1000 + 1) + 1000);
+                int randVal = random.nextInt(500000 - 1000 + 1) + 1000;
+                dayLim.add(randVal);
+                dayLimRand.add(randVal);
+                dayLimRevSrt.add(randVal);
+    
+                // ArrayList<Integer> dayLimRand = new ArrayList<>(dayLim);
+                // ArrayList<Integer> dayLimRevSrt = new ArrayList<>(dayLim);
+                // dayLimRand.add(random.nextInt(500000 - 1000 + 1) + 1000);
                 // quickSort(dayLimRand, 0, dayLimRand.size() - 1);
-                dayLimRevSrt.add(random.nextInt(500000 - 1000 + 1) + 1000);
+                // dayLimRevSrt.add(random.nextInt(500000 - 1000 + 1) + 1000);
             }
+            // ArrayList<Integer> dayLimRand = new ArrayList<>(dayLim);
+            // ArrayList<Integer> dayLimRevSrt = new ArrayList<>(dayLim);
+            // dayLimRand.addAll(dayLim);
+            // dayLimRevSrt.addAll(dayLim);
         quickSort(dayLim, 0, dayLim.size() - 1);
         quickSortRev(dayLimRevSrt, 0, dayLimRevSrt.size() - 1);
         weeklyLimArrsSrt.add(dayLim);
@@ -80,13 +95,13 @@ public class crswrk2 {
         }
     }
      public static void quickSort(ArrayList<Integer> list, int low, int high) {
-        ArrayList<Integer> stack = new ArrayList<>();
-        stack.add(low);
-        stack.add(high);
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
+        stack.push(low);
+        stack.push(high);
 
         while (!stack.isEmpty()) {
-            high = stack.remove(stack.size() - 1);
-            low = stack.remove(stack.size() - 1);
+            high = stack.pop();
+            low = stack.pop();
 
             int p = partition(list, low, high);
 
@@ -114,13 +129,14 @@ public class crswrk2 {
         return (i + 1);
     }
     public static void quickSortRev(ArrayList<Integer> list, int low, int high) {
-        ArrayList<Integer> stack = new ArrayList<>();
-        stack.add(low);
-        stack.add(high);
+        // ArrayList<Integer> stack = new ArrayList<>();
+        Deque<Integer> stack = new ArrayDeque<>();
+        stack.push(low);
+        stack.push(high);
 
         while (!stack.isEmpty()) {
-            high = stack.remove(stack.size() - 1);
-            low = stack.remove(stack.size() - 1);
+            high = stack.pop();
+            low = stack.pop();
 
             int p = partitionRev(list, low, high);
 
@@ -191,6 +207,8 @@ public class crswrk2 {
         for(int i = 0; i < weeklyLimArrsSrt.size(); i++){
             ArrayList<Integer> dayList = weeklyLimArrsSrt.get(i);
             quickSort(dayList, 0, dayList.size() - 1);
+            // hybridSort hs = new hybridSort();
+            // hs.
         }
         long endTime = System.currentTimeMillis();
         System.out.println("System took " + (endTime - startTime) + " ms to run.");
