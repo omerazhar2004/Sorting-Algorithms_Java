@@ -1,3 +1,4 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -12,9 +13,9 @@ public class hybridSort {
         hs.tstArrFormSrt();
         // hs.tstArrFormPrint();
     }
-    public void tstArrForm(){
+    public void tstArrForm(){    //for testing purposes
         Random random = new Random();
-        for (int j = 0; j < 1000000; j++){
+        for (int j = 0; j < 10000000; j++){
             weeklyLimArrsSrt.add(random.nextInt(500000 - 1000 + 1) + 1000);
         }   
     }
@@ -27,39 +28,38 @@ public class hybridSort {
     public void tstArrFormSrt(){
         long startTime = System.currentTimeMillis();
         System.out.println("Sorted");
-        // quickInsHyb(weeklyLimArrsSrt, 0, weeklyLimArrsSrt.size() - 1);
-        insertionSort(weeklyLimArrsSrt);
+        quickInsHyb(weeklyLimArrsSrt, 0, weeklyLimArrsSrt.size() - 1);
+        // insertionSort(weeklyLimArrsSrt);
         long endTime = System.currentTimeMillis();
         System.out.println("System took " + (endTime - startTime) + " ms to run.");
 
     }
     
-     public static void quickInsHyb(ArrayList<Integer> list, int low, int high) {
+     public void quickInsHyb(ArrayList<Integer> list, int low, int high) {
         if(low < high){
             if((high - low < 9)){
-                insertionSort(list);
+                 insertionSort(list, low, high);
             }
             else{
-            
-            ArrayList<Integer> stack = new ArrayList<>();
-            stack.add(low);
-            stack.add(high);
+                ArrayDeque<Integer> stack = new ArrayDeque<>();
+        stack.push(low);
+        stack.push(high);
 
-            while (!stack.isEmpty()) {
-                high = stack.remove(stack.size() - 1);
-                low = stack.remove(stack.size() - 1);
+        while (!stack.isEmpty()) {
+            high = stack.pop();
+            low = stack.pop();
 
-                int p = partition(list, low, high);
+            int p = partition(list, low, high);
 
-                if (p - 1 > low) {
-                    stack.add(low);
-                    stack.add(p - 1);
-                }
-                if (p + 1 < high) {
-                    stack.add(p + 1);
-                    stack.add(high);
-                }
+            if (p - 1 > low) {
+                stack.add(low);
+                stack.add(p - 1);
             }
+            if (p + 1 < high) {
+                stack.add(p + 1);
+                stack.add(high);
+            }
+        }
             }
     }
     }
@@ -76,9 +76,9 @@ public class hybridSort {
         Collections.swap(list, i + 1, high);
         return (i + 1);
     }
-    public void insertionSort(ArrayList<Integer> list){
+    public void insertionSort(ArrayList<Integer> list, int low, int high){
         int i, j;
-        for (i = 1; i < list.size(); i++){
+        for (i = low + 1; i <= high; i++){
             int tempVal = list.get(i);
             j = i;
             while(j > 0 && (list.get(j - 1) > tempVal)){

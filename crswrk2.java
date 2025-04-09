@@ -7,10 +7,12 @@ public class crswrk2 {
     // public int [] dailyLim;
     // public int [] weekLims =  {14, 5, 7, 7};
     public int [] weekLims =  {1000, 5000, 10000, 50000, 75000, 100000, 500000};
+    //  public int [] weekLims =  {1000, 5000, 10000, 50000, 75000, 100000, 5000000};
     // public int [] weekLims =  {1000, 5000, 1000, 5000, 7500, 1000, 5000};
     public ArrayList<ArrayList<Integer>> weeklyLimArrsSrt = new ArrayList<>();  //sorted
     public ArrayList<ArrayList<Integer>> weeklyLimArrsRand = new ArrayList<>();  //unsorted
     public ArrayList<ArrayList<Integer>> weeklyLimArrsRevSorted = new ArrayList<>();
+    hybridSort hs = new hybridSort();
        //reverse sorted
     public static void main (String args[]){
         crswrk2 mod = new crswrk2();
@@ -206,8 +208,9 @@ public class crswrk2 {
         System.out.println("Start Time: " + startTime);
         for(int i = 0; i < weeklyLimArrsSrt.size(); i++){
             ArrayList<Integer> dayList = weeklyLimArrsSrt.get(i);
-            quickSort(dayList, 0, dayList.size() - 1);
+            // quickSort(dayList, 0, dayList.size() - 1);
             // hybridSort hs = new hybridSort();
+            hs.quickInsHyb(dayList, 0, dayList.size() - 1);
             // hs.
         }
         long endTime = System.currentTimeMillis();
@@ -219,7 +222,9 @@ public class crswrk2 {
         System.out.println("Start Time: " + startTime);
         for(int i = 0; i < weeklyLimArrsRand.size(); i++){
             ArrayList<Integer> dayListRand = weeklyLimArrsRand.get(i);
-            quickSort(dayListRand, 0, dayListRand.size() - 1);
+            // quickSort(dayListRand, 0, dayListRand.size() - 1);
+            // hybridSort hs = new hybridSort();
+            hs.quickInsHyb(dayListRand, 0, dayListRand.size() - 1);
         }
         long endTime = System.currentTimeMillis();
         System.out.println("System took " + (endTime - startTime) + " ms to run.");
@@ -230,7 +235,8 @@ public class crswrk2 {
         System.out.println("Start Time: " +  startTime);
         for(int i = 0; i < weeklyLimArrsRevSorted.size(); i++){
             ArrayList<Integer> dayListRevSrt = weeklyLimArrsRevSorted.get(i);
-            quickSort(dayListRevSrt, 0, dayListRevSrt.size() - 1);
+            // quickSort(dayListRevSrt, 0, dayListRevSrt.size() - 1);
+            hs.quickInsHyb(dayListRevSrt, 0, dayListRevSrt.size() - 1);
         }
         long endTime = System.currentTimeMillis();
         System.out.println("System took " + (endTime - startTime) + " ms to run.");
