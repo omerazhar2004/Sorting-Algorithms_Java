@@ -76,21 +76,21 @@ public class MyArrayQueue {
      * @param theElement
      */
     public void enqueue(Object theElement) {
-        if (isFull()) {
-            int newCapacity = queue.length * 2;
-            Object[] newQueue = new Object[newCapacity];
+        if (isFull()) { //if the queue is at full size, expand it
+            Object[] expandedQueue = new Object[queue.length * 2];  
     
-            // Copy elements in correct order
-            for (int i = 0; i < numElements; i++) {
-                newQueue[i] = queue[(front + i) % queue.length];
+            // Adjust element positions to reset front index
+            for (int index = 0; index < numElements; index++) {  //preserving existing elements in their correct order
+                expandedQueue[index] = queue[(front + index) % queue.length];
             }
     
-            queue = newQueue;
-            front = 0;  // Reset front index
+            queue = expandedQueue;
+            front = 0;  // Reset front to start of resized array
         }
     
-        int rear = (front + numElements) % queue.length;  // Circular addition
-        queue[rear] = theElement;
+        // identify the position for new element in the circular structure
+        int newPosition = (front + numElements) % queue.length;
+        queue[newPosition] = theElement;
         numElements++;
     }
 
