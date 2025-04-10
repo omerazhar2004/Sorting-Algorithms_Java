@@ -75,28 +75,24 @@ public class MyArrayQueue {
      * other elements accordingly. See lecture/lab materials for details.
      * @param theElement
      */
-        public void enqueue(Object theElement) {
-            // if(!isFull()){
-            //     queue[front + numElements] = theElement;
-            //     numElements++;
-            //     front = 0;
-
-                // queue[front] = 0;// your code here
-                // numElements = (capacity * 2);
-                // Object[] temp = new Object[capacity];
-            // }
-            if(isFull()){
-                int newCapacity = (queue.length * 2);
-                Object[] newQueue = new Object[newCapacity];
-
-                for(int i = 0; i < numElements; i++){
-                    newQueue[i] = queue[(front + i) % queue.length];
-                }
+    public void enqueue(Object theElement) {
+        if (isFull()) {
+            int newCapacity = queue.length * 2;
+            Object[] newQueue = new Object[newCapacity];
+    
+            // Copy elements in correct order
+            for (int i = 0; i < numElements; i++) {
+                newQueue[i] = queue[(front + i) % queue.length];
             }
-            int rear = (front + numElements) % queue.length;
-            queue[rear] = theElement;
-            numElements++;
+    
+            queue = newQueue;
+            front = 0;  // Reset front index
         }
+    
+        int rear = (front + numElements) % queue.length;  // Circular addition
+        queue[rear] = theElement;
+        numElements++;
+    }
 
     /**
      * YOU NEED TO COMPLETE THIS FUNCTION.
