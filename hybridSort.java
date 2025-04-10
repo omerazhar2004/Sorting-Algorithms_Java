@@ -37,7 +37,7 @@ public class hybridSort {
     
      public void quickInsHyb(ArrayList<Integer> list, int low, int high) {
         if(low < high){
-            if((high - low < 9)){
+            if((high - low < 60)){
                  insertionSort(list, low, high);
             }
             else{
@@ -52,19 +52,21 @@ public class hybridSort {
             int p = partition(list, low, high);
 
             if (p - 1 > low) {
-                stack.add(low);
-                stack.add(p - 1);
+                stack.push(low);
+                stack.push(p - 1);
             }
             if (p + 1 < high) {
-                stack.add(p + 1);
-                stack.add(high);
+                stack.push(p + 1);
+                stack.push(high);
             }
         }
             }
     }
     }
     private static int partition(ArrayList<Integer> list, int low, int high) {
-        int pivot = list.get(high);
+        int pivotIndex = low + (high - low)/ 2;
+        int pivot = list.get(pivotIndex);
+        Collections.swap(list, pivotIndex, high);
         int i = (low - 1);
 
         for (int j = low; j < high; j++) {
@@ -88,4 +90,5 @@ public class hybridSort {
             list.set(j, tempVal);
         }
     }
-}    
+}
+

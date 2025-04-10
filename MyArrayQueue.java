@@ -75,9 +75,28 @@ public class MyArrayQueue {
      * other elements accordingly. See lecture/lab materials for details.
      * @param theElement
      */
-    public void enqueue(Object theElement) {
-        // your code here
-    }
+        public void enqueue(Object theElement) {
+            // if(!isFull()){
+            //     queue[front + numElements] = theElement;
+            //     numElements++;
+            //     front = 0;
+
+                // queue[front] = 0;// your code here
+                // numElements = (capacity * 2);
+                // Object[] temp = new Object[capacity];
+            // }
+            if(isFull()){
+                int newCapacity = (queue.length * 2);
+                Object[] newQueue = new Object[newCapacity];
+
+                for(int i = 0; i < numElements; i++){
+                    newQueue[i] = queue[(front + i) % queue.length];
+                }
+            }
+            int rear = (front + numElements) % queue.length;
+            queue[rear] = theElement;
+            numElements++;
+        }
 
     /**
      * YOU NEED TO COMPLETE THIS FUNCTION.
@@ -89,7 +108,16 @@ public class MyArrayQueue {
      * @throws IllegalStateException
      */
     public Object dequeue() throws IllegalStateException {
-        // your code here
+        if (isEmpty()) {
+            throw new IllegalStateException("Queue is empty. Cannot dequeue.");
+        }
+    
+        Object returnedElement = queue[front];
+        queue[front] = null;  // Optional: Clear reference to help with garbage collection
+        front = (front + 1) % queue.length;  // Move front in a circular fashion
+        numElements--;
+    
+        return returnedElement;
     }
 
     /**
@@ -166,7 +194,6 @@ public class MyArrayQueue {
             System.out.println(q.dequeue());
             System.out.println(q.toString());
         }
-
         try {
             // try to remove from empty queue
             System.out.println("DEQUEUE");

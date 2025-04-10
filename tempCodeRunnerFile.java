@@ -1,3 +1,2 @@
-  mod.test_arrGenSorted();
-        mod.test_arrGenRand();
-        mod.test_arrGenRevSrt();
+hs.quickInsHyb(dayListRand, 0, dayListRand.size() - 1);
+        }
