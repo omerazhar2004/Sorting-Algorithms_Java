@@ -15,11 +15,7 @@ Java | Data Structures | Algorithm Optimization | Computational Efficiency
    ```sh
    git clone https://github.com/omerazhar2004/Sorting-Algorithms_Java
    cd Sorting-Algorithms_Java
-   ```  
-2. Install dependencies:  
-   ```sh
-   pip install -r requirements.txt
-   ```  
+   ```   
 3. Run the system:  
    ```sh
    javac Q1aQ1b.java
